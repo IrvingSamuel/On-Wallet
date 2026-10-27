@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ApiError, api } from "../api/client";
 import { useAuth } from "../auth";
 import BrandLogo from "../components/BrandLogo";
@@ -12,6 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [acceptLegal, setAcceptLegal] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -23,6 +24,10 @@ export default function Login() {
 
   async function submit(e: FormEvent) {
     e.preventDefault();
+    if (mode === "register" && !acceptLegal) {
+      setError("Aceite a Política de Privacidade e os Termos de Uso para cadastrar.");
+      return;
+    }
     setBusy(true);
     setError("");
     try {
@@ -102,7 +107,26 @@ export default function Login() {
                 placeholder="Mínimo 8 caracteres"
               />
             </label>
-            <button type="submit" className="btn primary" disabled={busy}>
+            {mode === "register" && (
+              <label className="legal-accept">
+                <input
+                  type="checkbox"
+                  checked={acceptLegal}
+                  onChange={(e) => setAcceptLegal(e.target.checked)}
+                  required
+                />
+                <span>
+                  Li e aceito a <Link to="/privacidade">Política de Privacidade</Link> e os{" "}
+                  <Link to="/termos">Termos de Uso</Link> (LGPD — controlador Irving Samuel
+                  Lima Bandeira).
+                </span>
+              </label>
+            )}
+            <button
+              type="submit"
+              className="btn primary"
+              disabled={busy || (mode === "register" && !acceptLegal)}
+            >
               {busy ? "Aguarde…" : mode === "login" ? "Entrar" : "Cadastrar"}
             </button>
             <button
@@ -112,12 +136,16 @@ export default function Login() {
               onClick={() => {
                 setMode(mode === "login" ? "register" : "login");
                 setError("");
+                setAcceptLegal(false);
               }}
             >
               {mode === "login" ? "Criar conta" : "Já tenho conta"}
             </button>
             <p className="muted" style={{ marginTop: "0.75rem", fontSize: "0.85rem" }}>
-              Links públicos de verificação (<code>/v/…</code>) não exigem login.
+              Links públicos de verificação (<code>/v/…</code>) não exigem login.{" "}
+              <Link to="/privacidade">Privacidade</Link>
+              {" · "}
+              <Link to="/termos">Termos</Link>
             </p>
           </form>
         </div>

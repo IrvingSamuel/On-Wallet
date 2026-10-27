@@ -31,3 +31,4 @@ pm2 logs carteira
 - [docs/REQUISITOS.md](docs/REQUISITOS.md) / [docs/REGRAS_NEGOCIO.md](docs/REGRAS_NEGOCIO.md) / [docs/MODULOS.md](docs/MODULOS.md): requisitos, RN e módulos
 - [docs/UML.md](docs/UML.md) / [docs/FLUXOS.md](docs/FLUXOS.md) / [docs/GLOSSARIO.md](docs/GLOSSARIO.md): UML, fluxos e glossário
 - [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md): mapa RF → código e convenções
+- [docs/PRIVACIDADE.md](docs/PRIVACIDADE.md) / [docs/TERMOS.md](docs/TERMOS.md): LGPD — controlador pessoa física Irving Samuel Lima Bandeira (`/privacidade`, `/termos`)

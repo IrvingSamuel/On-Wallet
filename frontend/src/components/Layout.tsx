@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { api, type Health } from "../api/client";
 import { useAuth } from "../auth";
 import AssistantFab from "./AssistantFab";
@@ -134,9 +134,13 @@ export default function Layout() {
       <footer className="site-footer">
         <p>Projeto acadêmico – Project LAB, UNIMA Afya · Grupo 3</p>
         <p className="footer-links">
-          <a href="#privacidade">Política de privacidade</a>
+          <Link to="/privacidade">Política de privacidade</Link>
           <span aria-hidden="true">·</span>
-          <a href="#termos">Termos de uso</a>
+          <Link to="/termos">Termos de uso</Link>
+        </p>
+        <p className="footer-note">
+          Controlador (LGPD): Irving Samuel Lima Bandeira ·{" "}
+          <a href="mailto:sync.irvingsamuel@gmail.com">sync.irvingsamuel@gmail.com</a>
         </p>
         <p className="footer-note">
           Integridade (SHA-256) comprova que o arquivo não foi alterado; não comprova a autenticidade do emissor.
@@ -148,20 +152,29 @@ export default function Layout() {
   );
 }
 
-/** Header azul + faixa para páginas públicas (login, /v/:token). */
+/** Header azul + faixa para páginas públicas (login, /v/:token, legais). */
 export function PublicChrome({ children }: { children: ReactNode }) {
   return (
     <div className="app public-app">
       <div className="flag-strip" aria-hidden="true" />
       <header className="topbar public-topbar">
-        <div className="brand" aria-label="On-Wallet">
+        <Link to="/login" className="brand" aria-label="On-Wallet">
           <span className="brand-full"><BrandLogo size={32} /></span>
           <span className="brand-short"><BrandLogo size={28} short /></span>
-        </div>
+        </Link>
       </header>
       <main className="content">{children}</main>
       <footer className="site-footer">
         <p>Projeto acadêmico – Project LAB, UNIMA Afya · Grupo 3</p>
+        <p className="footer-links">
+          <Link to="/privacidade">Política de privacidade</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/termos">Termos de uso</Link>
+        </p>
+        <p className="footer-note">
+          Controlador (LGPD): Irving Samuel Lima Bandeira ·{" "}
+          <a href="mailto:sync.irvingsamuel@gmail.com">sync.irvingsamuel@gmail.com</a>
+        </p>
         <p className="footer-note">
           Integridade (SHA-256) comprova que o arquivo não foi alterado; não comprova a autenticidade do emissor.
         </p>

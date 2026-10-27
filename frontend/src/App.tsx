@@ -12,12 +12,15 @@ import PublicIntegrity from "./pages/PublicIntegrity";
 import Receipt from "./pages/Receipt";
 import Collections from "./pages/Collections";
 import Audit from "./pages/Audit";
+import { PrivacyPolicy, TermsOfUse } from "./pages/Legal";
 
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/privacidade" element={<PrivacyPolicy />} />
+        <Route path="/termos" element={<TermsOfUse />} />
         <Route path="/v/:token" element={<Verify />} />
         <Route path="/i/:id" element={<PublicIntegrity />} />
         <Route

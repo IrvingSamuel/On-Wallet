@@ -357,6 +357,22 @@ select:focus:not(:focus-visible) {
 .footer-links { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
 .footer-note { color: rgba(255, 255, 255, 0.75); font-size: 0.8125rem; max-width: 640px; margin: 0.25rem auto 0; }
 
+.legal-doc { max-width: 720px; margin: 0 auto; }
+.legal-doc h2 { margin: 1.25rem 0 0.5rem; font-size: 1.05rem; color: var(--primary-dark); }
+.legal-doc p, .legal-doc li { line-height: 1.55; }
+.legal-doc ul { margin: 0.25rem 0 0.75rem; padding-left: 1.25rem; }
+.legal-meta { font-size: 0.875rem; margin: 0 0 0.75rem; }
+.legal-accept {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.legal-accept input { margin-top: 0.2rem; flex-shrink: 0; }
+.legal-accept a { color: var(--primary); }
+
 /* —— Cards / forms —— */
 .card {
   background: var(--card);
